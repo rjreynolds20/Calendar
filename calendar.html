@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> How Does Your Schedule Look? </title>
+    <link rel="stylesheet" href="calendar_stylesheet.css">
+    <script type="text/javascript" src="calendar_js.js"></script>
+  </head>
+  <!-- Upon loading the body of the HTML document, function setUpTable()
+       is called. Function adds an onClick event listener to every <td>
+       within the table located in the body. -->
+       <body onload="addOnClick();">
+	 <header>
+	   <div class="scheduleTitle">
+	     <text>How Does Your Schedule Look?</text>
+	   </div>
+	 </header>
+	 <hgroup>
+	   <!-- Table size adjusts according to the user's browser width. --->
+	   <div class="tableContainer">
+	     <table id="schedule" border="1px" width="90%" rules="none">
+	       <!--Days of the week, divided appropriately by number of columns (8).--->
+	       <tr>
+		 <th class="tableTopRow"> </th>
+		 <th class="tableTopRow">Sunday</th>
+		 <th class="tableTopRow">Monday</th>
+		 <th class="tableTopRow">Tuesday</th>
+		 <th class="tableTopRow">Wednesday</th>
+		 <th class="tableTopRow">Thursday</th>
+		 <th class="tableTopRow">Friday</th>
+		 <th class="tableTopRow">Saturday</th>
+	       </tr>
+	       #AUTOMATETABLE
+	     </table>
+	   </div>
+
+	 </hgroup>
+
+	 <footer>
+	   <!-- Form used for user input into the schedule. -->
+	   <div class="inputContainer">
+	     <form action="addEvent.php" method="post">
+	       <div class="inputTitle">
+		 <label for="scheduleAdd">Add to Schedule: </label>
+		 <br>
+	       </div>
+	       <br>
+
+	       <!-- Takes user input, inquiring for the event name to be added to the table. -->
+	       <div class="inputData">
+		 <div>
+		   <label for="scheduleAdd">Event Name: </label>
+		   <input class="inputEventTest" type="text" name="eventName" id="eventName"> </input>
+		 </div>
+
+		 <!-- Takes user input, inquiring for the color that will be the
+		      cell background color. -->
+		 <div class="inputColor">
+		   <label for="color">Color: </label>
+		   <select id="colorType" name="colorType">
+		     <option value="Red">Red</option>
+		     <option value="Blue" >Blue</option>
+		     <option value="Yellow">Yellow</option>
+		     <option value="Green">Green</option>
+		     <option value="Pink">Pink</option>
+		     <option value="Purple">Purple</option>
+		     <option value="White">White</option>
+		     <option value="Grey">Grey</option>
+		   </select>
+		 </div>
+	       </div>
+
+	       <br>
+
+	       <!-- Takes user input, inquiring for the days (columns) the event will be
+		    present on the table. -->
+	       <div class="inputHeader">
+		 <label class="inputTitle" for="day">Day of Event: </label>
+	       </div>
+	       <div class="inputCheckbox">
+		 <input type="checkbox" id="sunday" name="day[]" value="0">
+		 <label for="day">Sunday</label>
+		 <input type="checkbox" id="monday" name="day[]" value="1">
+		 <label for="day">Monday</label>
+		 <input type="checkbox" id="tuesday" name="day[]" value="2">
+		 <label for="day">Tuesday</label>
+		 <input type="checkbox" id="wednesday" name="day[]" value="3">
+		 <label for="day">Wednesday</label>
+		 <input type="checkbox" id="thursday" name="day[]" value="4">
+		 <label for="day">Thursday</label>
+		 <input type="checkbox" id="friday" name="day[]" value="5">
+		 <label for="day">Friday</label>
+		 <input type="checkbox" id="saturday" name="day[]" value="6">
+		 <label for="day">Saturday</label>
+	       </div>
+
+	       <br>
+
+	       <!-- Takes user input, inquiring for the times (rows) the event will be present on the 
+		    table. -->
+	       <div class="inputHeader">
+		 <label for="day" class="inputTimeText">Time of Event: </label>
+	       </div>
+	       <div class="inputCheckbox">
+		 <input type="checkbox" id="8am" name="time[]" value="0">
+		 <label for="day">8am</label>
+		 <input type="checkbox" id="9am" name="time[]" value="1">
+		 <label for="day">9am</label>
+		 <input type="checkbox" id="10am" name="time[]" value="2">
+		 <label for="day">10am</label>
+		 <input type="checkbox" id="11am" name="time[]" value="3">
+		 <label for="day">11am</label>
+		 <input type="checkbox" id="12pm" name="time[]" value="4">
+		 <label for="day">12pm</label>
+		 <input type="checkbox" id="1pm" name="time[]" value="5">
+		 <label for="day">1pm</label>
+		 <input type="checkbox" id="2pm" name="time[]" value="6">
+		 <label for="day">2pm</label>
+		 <input type="checkbox" id="3pm" name="time[]" value="7">
+		 <label for="day">3pm</label>
+		 <input type="checkbox" id="4pm" name="time[]" value="8">
+		 <label for="day">4pm</label>
+		 <input type="checkbox" id="5pm" name="time[]" value="9">
+		 <label for="day">5pm</label>
+	       </div>
+	       
+	       <br>
+
+	       <!-- Button that when clicked submits all information in the form to functions needed
+		    to edit the table. -->
+	       <div class="inputButtonContainer">
+		 <button class="inputButton" type="submit" id="inputButton">
+		   <text>Submit</text>
+		 </button>
+	       </div>
+
+	       <div class="inputNotice">
+		 <label><strong>You can remove a cell by clicking on it!</strong></label>
+	       </div>
+	     </form>  
+	   </div>
+
+	   <!-- Hidden form that gets the X,Y coordinates of cell being clicked on by user.
+                Used to pass to backend for deletion -->
+	   <form action="deleteEvent.php" id='reset' method="post">
+	     <input type="text" class="hidden" name="x" id="x"></input>
+	     <input type="text" class="hidden" name="y" id="y"></input>
+	   </form>
+	 </footer>	 
+       </body>
+</html>
